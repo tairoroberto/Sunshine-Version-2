@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Sunshine</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Configurações</string>
+    <string name="action_refresh">Atualizar</string>
+    <string name="title_activity_detail">DetailActivity</string>
+    <string name="title_activity_settings">Configurações</string>
+    <string name="pref_location_key">Local</string>
+    <string name="pref_location_label" translatable="false">location</string>
+    <string name="pref_location_default" translatable="false">São Paulo</string>
+
+    <!-- Label for the temperature units preference [CHAR LIMIT=30] -->
+    <string name="pref_units_label">Temperatura</string>
+
+    <!-- Label for metric option in temperature unit preference [CHAR LIMIT=25] -->
+    <string name="pref_units_label_metric">Celsius</string>
+
+    <!-- Label for imperial option in temperature unit preference [CHAR LIMIT=25] -->
+    <string name="pref_units_label_imperial">Fahrenheit</string>
+    <string name="action_preferred_location">Localização preferida</string>
+    <string name="share">Compartilhar</string>
+
+</resources>
