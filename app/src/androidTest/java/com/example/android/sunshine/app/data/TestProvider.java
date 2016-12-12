@@ -118,21 +118,17 @@ public class TestProvider extends AndroidTestCase {
 
         // We define the component name based on the package name from the context and the
         // WeatherProvider class.
-        ComponentName componentName = new ComponentName(mContext.getPackageName(),
-                WeatherProvider.class.getName());
+        ComponentName componentName = new ComponentName(mContext.getPackageName(), WeatherProvider.class.getName());
         try {
             // Fetch the provider info using the component name from the PackageManager
             // This throws an exception if the provider isn't registered.
             ProviderInfo providerInfo = pm.getProviderInfo(componentName, 0);
 
             // Make sure that the registered authority matches the authority from the Contract.
-            assertEquals("Error: WeatherProvider registered with authority: " + providerInfo.authority +
-                    " instead of authority: " + WeatherContract.CONTENT_AUTHORITY,
-                    providerInfo.authority, WeatherContract.CONTENT_AUTHORITY);
+            assertEquals("Error: WeatherProvider registered with authority: " + providerInfo.authority + " instead of authority: " + WeatherContract.CONTENT_AUTHORITY, providerInfo.authority, WeatherContract.CONTENT_AUTHORITY);
         } catch (PackageManager.NameNotFoundException e) {
             // I guess the provider isn't registered correctly.
-            assertTrue("Error: WeatherProvider not registered at " + mContext.getPackageName(),
-                    false);
+            assertTrue("Error: WeatherProvider not registered at " + mContext.getPackageName(), false);
         }
     }
 
@@ -142,35 +138,29 @@ public class TestProvider extends AndroidTestCase {
             Students: Uncomment this test to verify that your implementation of GetType is
             functioning correctly.
          */
-//    public void testGetType() {
-//        // content://com.example.android.sunshine.app/weather/
-//        String type = mContext.getContentResolver().getType(WeatherEntry.CONTENT_URI);
-//        // vnd.android.cursor.dir/com.example.android.sunshine.app/weather
-//        assertEquals("Error: the WeatherEntry CONTENT_URI should return WeatherEntry.CONTENT_TYPE",
-//                WeatherEntry.CONTENT_TYPE, type);
-//
-//        String testLocation = "94074";
-//        // content://com.example.android.sunshine.app/weather/94074
-//        type = mContext.getContentResolver().getType(
-//                WeatherEntry.buildWeatherLocation(testLocation));
-//        // vnd.android.cursor.dir/com.example.android.sunshine.app/weather
-//        assertEquals("Error: the WeatherEntry CONTENT_URI with location should return WeatherEntry.CONTENT_TYPE",
-//                WeatherEntry.CONTENT_TYPE, type);
-//
-//        long testDate = 1419120000L; // December 21st, 2014
-//        // content://com.example.android.sunshine.app/weather/94074/20140612
-//        type = mContext.getContentResolver().getType(
-//                WeatherEntry.buildWeatherLocationWithDate(testLocation, testDate));
-//        // vnd.android.cursor.item/com.example.android.sunshine.app/weather/1419120000
-//        assertEquals("Error: the WeatherEntry CONTENT_URI with location and date should return WeatherEntry.CONTENT_ITEM_TYPE",
-//                WeatherEntry.CONTENT_ITEM_TYPE, type);
-//
-//        // content://com.example.android.sunshine.app/location/
-//        type = mContext.getContentResolver().getType(LocationEntry.CONTENT_URI);
-//        // vnd.android.cursor.dir/com.example.android.sunshine.app/location
-//        assertEquals("Error: the LocationEntry CONTENT_URI should return LocationEntry.CONTENT_TYPE",
-//                LocationEntry.CONTENT_TYPE, type);
-//    }
+    public void testGetType() {
+        // content://com.example.android.sunshine.app/weather/
+        String type = mContext.getContentResolver().getType(WeatherEntry.CONTENT_URI);
+        // vnd.android.cursor.dir/com.example.android.sunshine.app/weather
+        assertEquals("Error: the WeatherEntry CONTENT_URI should return WeatherEntry.CONTENT_TYPE", WeatherEntry.CONTENT_TYPE, type);
+
+        String testLocation = "saopaulo";
+        // content://com.example.android.sunshine.app/weather/94074
+        type = mContext.getContentResolver().getType(WeatherEntry.buildWeatherLocation(testLocation));
+        // vnd.android.cursor.dir/com.example.android.sunshine.app/weather
+        assertEquals("Error: the WeatherEntry CONTENT_URI with location should return WeatherEntry.CONTENT_TYPE", WeatherEntry.CONTENT_TYPE, type);
+
+        long testDate = 1419120000L; // December 21st, 2014
+        // content://com.example.android.sunshine.app/weather/94074/20140612
+        type = mContext.getContentResolver().getType(WeatherEntry.buildWeatherLocationWithDate(testLocation, testDate));
+        // vnd.android.cursor.item/com.example.android.sunshine.app/weather/1419120000
+        assertEquals("Error: the WeatherEntry CONTENT_URI with location and date should return WeatherEntry.CONTENT_ITEM_TYPE", WeatherEntry.CONTENT_ITEM_TYPE, type);
+
+        // content://com.example.android.sunshine.app/location/
+        type = mContext.getContentResolver().getType(LocationEntry.CONTENT_URI);
+        // vnd.android.cursor.dir/com.example.android.sunshine.app/location
+        assertEquals("Error: the LocationEntry CONTENT_URI should return LocationEntry.CONTENT_TYPE", LocationEntry.CONTENT_TYPE, type);
+    }
 
 
     /*
@@ -433,12 +423,13 @@ public class TestProvider extends AndroidTestCase {
 
 
     static private final int BULK_INSERT_RECORDS_TO_INSERT = 10;
+
     static ContentValues[] createBulkInsertWeatherValues(long locationRowId) {
         long currentTestDate = TestUtilities.TEST_DATE;
-        long millisecondsInADay = 1000*60*60*24;
+        long millisecondsInADay = 1000 * 60 * 60 * 24;
         ContentValues[] returnContentValues = new ContentValues[BULK_INSERT_RECORDS_TO_INSERT];
 
-        for ( int i = 0; i < BULK_INSERT_RECORDS_TO_INSERT; i++, currentTestDate+= millisecondsInADay ) {
+        for (int i = 0; i < BULK_INSERT_RECORDS_TO_INSERT; i++, currentTestDate += millisecondsInADay) {
             ContentValues weatherValues = new ContentValues();
             weatherValues.put(WeatherContract.WeatherEntry.COLUMN_LOC_KEY, locationRowId);
             weatherValues.put(WeatherContract.WeatherEntry.COLUMN_DATE, currentTestDate);
