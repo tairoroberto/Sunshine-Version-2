@@ -1,10 +1,8 @@
 package com.example.android.sunshine.app;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -15,14 +13,19 @@ public class MainActivity extends ActionBarActivity {
 
 
     private static final String TAG = "LOG";
+    private final String FORECASTFRAGMENT_TAG = "FFTAG";
+    private String mLocation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        mLocation = Utility.getPreferredLocation(this);
+
         setContentView(R.layout.activity_main);
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new ForecastFragment())
+                    .add(R.id.container, new ForecastFragment(), FORECASTFRAGMENT_TAG)
                     .commit();
         }
     }
@@ -54,15 +57,28 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void openPreferredLocationMap() {
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
-        String location = preferences.getString(getString(R.string.pref_location_key), getString(R.string.pref_location_default));
+        String location = Utility.getPreferredLocation(this);
         Intent intent = new Intent(Intent.ACTION_VIEW);
         Uri geolocation = Uri.parse("geo:0,0?").buildUpon().appendQueryParameter("q", location).build();
         intent.setData(geolocation);
         if (intent.resolveActivity(getPackageManager()) != null) {
             startActivity(intent);
-        }else {
+        } else {
             Log.i(TAG, "openPreferredLocationMap: " + location);
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        String location = Utility.getPreferredLocation(this);
+        // update the location in our second pane using the fragment manager
+        if (location != null && !location.equals(mLocation)) {
+            ForecastFragment ff = (ForecastFragment) getSupportFragmentManager().findFragmentByTag(FORECASTFRAGMENT_TAG);
+            if (null != ff) {
+                ff.onLocationChanged();
+            }
+            mLocation = location;
         }
     }
 }
