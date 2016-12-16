@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_detail"
     android:layout_width="match_parent"
@@ -9,12 +10,88 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.android.sunshine.app.DetailActivity">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <TextView
-        android:id="@+id/detail_text"
+        android:text="Today"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/detail_day_textview" />
+    <TextView
+        android:text="June 24"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/detail_date_textview" />
+
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:padding="16dp" />
+        android:paddingBottom="16dp"
+        android:paddingTop="16dp">
 
-</RelativeLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:text="21º"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/detail_high_textview" />
+
+            <TextView
+                android:text="8º"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/detail_low_textview" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_launcher"
+                android:id="@+id/detail_icon" />
+
+            <TextView
+                android:text="Clear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/detail_forecast_textview" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:text="Humidity: 84%"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/detail_humidity_textview" />
+
+    <TextView
+        android:text="Wind: 6 km/h NW"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/detail_wind_textview" />
+
+    <TextView
+        android:text="Pressure: 1014 hpa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/detail_pressure_textview" />
+</LinearLayout>
+</ScrollView>
