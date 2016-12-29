@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:xliff="http://schemas.android.com/apk/res-auto">
 
     <string name="app_name">Sunshine</string>
     <string name="hello_world">Hello world!</string>
+    <string name="action_map">Mapa</string>
     <string name="action_settings">Configurações</string>
     <string name="action_refresh">Atualizar</string>
     <string name="title_activity_detail">DetailActivity</string>
@@ -22,4 +23,32 @@
     <string name="action_preferred_location">Localização preferida</string>
     <string name="share">Compartilhar</string>
 
+
+    <string name="pref_enable_notifications_label">Notificação</string>
+
+    <string name="pref_enable_notifications_true">Habilitar</string>
+    <string name="pref_enable_notifications_false">Não habilitar</string>
+    <!-- Key name for temperature unit preference in SharedPreferences [CHAR LIMIT=NONE] -->
+
+    <!-- Language-specific constants -->
+    <string name="today">Hoje</string>
+
+    <!-- For labelling tomorrow's forecast [CHAR LIMIT=15] -->
+    <string name="tomorrow">Amanhã</string>
+
+
+    <!-- Windspeed formats -->
+    <!-- Wind in mph [CHAR LIMIT=25] -->
+    <string name="format_wind_mph">Vento: <xliff:g id="speed">%1$1.0f</xliff:g> mph <xliff:g id="direction">%2$s</xliff:g></string>
+    <!-- Wind in kph [CHAR LIMIT=25] -->
+    <string name="format_wind_kmh">Vento: <xliff:g id="speed">%1$1.0f</xliff:g> km/h <xliff:g id="direction">%2$s</xliff:g></string>
+
+    <!-- Pressure format CHAR LIMIT=25] -->
+    <string name="format_pressure">Pressão: <xliff:g id="pressure">%1.0f</xliff:g> hPa</string>
+
+    <!-- Humidity format CHAR LIMIT=25]-->
+    <string name="format_humidity">Humidade: <xliff:g id="humidity">%1.0f</xliff:g> %%</string>
+
+    <!-- Notification Format -->
+    <string name="format_notification">Temp: <xliff:g id="condition">%1$s</xliff:g> Alta: <xliff:g id="high">%2$s</xliff:g> Baixa: <xliff:g id="low">%3$s</xliff:g></string>
 </resources>
